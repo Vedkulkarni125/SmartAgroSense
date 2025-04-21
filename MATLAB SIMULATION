@@ -1,0 +1,70 @@
+% Smart AgroSense - 3D Visualization of Data Flow
+clc; clear; close all;
+
+% Set up figure
+figure('Color','w');
+axis([-10 10 -10 10 0 12]);
+xlabel('X-axis'); ylabel('Y-axis'); zlabel('Z-axis');
+title('Smart AgroSense - 3D Data Flow Visualization','FontSize',14);
+grid on; hold on;
+view(3);
+
+% Draw ground
+fill3([-10 10 10 -10], [-10 -10 10 10], [0 0 0 0], [0.8 1 0.8]);
+
+% Node positions [x, y]
+nodes = [ -6  4;
+          -2 -5;
+           6  3];
+
+node_labels = {'Node 1', 'Node 2', 'Node 3'};
+sensor_data = {...
+    'T: 25.3°C\nH: 60%\nSoil: 470', ...
+    'T: 26.1°C\nH: 55%\nSoil: 510', ...
+    'T: 24.8°C\nH: 58%\nSoil: 430 (Dry)'};
+
+% Plot nodes
+for i = 1:3
+    plot3(nodes(i,1), nodes(i,2), 0.5, 'o', 'MarkerSize', 10, 'MarkerFaceColor', 'b');
+    text(nodes(i,1), nodes(i,2), 1.5, node_labels{i}, 'FontSize', 12, 'FontWeight','bold');
+    text(nodes(i,1), nodes(i,2), 2.5, sensor_data{i}, 'FontSize', 10, 'BackgroundColor','w', 'Margin',2);
+end
+
+% Receiver position
+receiver_pos = [0, 0, 2];
+plot3(receiver_pos(1), receiver_pos(2), receiver_pos(3), 's', 'MarkerSize', 12, 'MarkerFaceColor', 'r');
+text(receiver_pos(1), receiver_pos(2), receiver_pos(3)+1, 'ESP32 Receiver', 'FontSize', 12, 'Color', 'r', 'FontWeight','bold');
+
+% Cloud position
+cloud_pos = [0, 0, 11];
+text(cloud_pos(1), cloud_pos(2), cloud_pos(3), '☁ Blynk Cloud', 'FontSize', 14, 'FontWeight','bold');
+
+% Phone position
+phone_pos = [5, -5, 1];
+text(phone_pos(1), phone_pos(2), phone_pos(3), '📱 Mobile App and web interface', 'FontSize', 14, 'FontWeight','bold');
+
+% Animate arrows from nodes to receiver
+for i = 1:3
+    p1 = [nodes(i,1), nodes(i,2), 0.5];
+    p2 = receiver_pos;
+    plot3([p1(1) p2(1)], [p1(2) p2(2)], [p1(3) p2(3)], '--m', 'LineWidth', 2);
+    pause(0.5);
+end
+
+% Arrow from receiver to cloud
+plot3([receiver_pos(1) cloud_pos(1)], [receiver_pos(2) cloud_pos(2)], [receiver_pos(3) cloud_pos(3)], '--c', 'LineWidth', 2);
+pause(0.5);
+
+% Arrow from cloud to phone
+plot3([cloud_pos(1) phone_pos(1)], [cloud_pos(2) phone_pos(2)], [cloud_pos(3) phone_pos(3)], '--g', 'LineWidth', 2);
+text(3, -1, 6, 'Data Flow →', 'FontSize', 12, 'FontWeight','bold');
+
+% Annotation
+annotation('textbox',[.15 .75 .1 .1],'String','Dry Soil → Alert Sent','FitBoxToText','on', 'BackgroundColor','y');
+
+xlim([-10.0 10.0])
+ylim([-10.0 10.0])
+zlim([0.01 12.00])
+
+disp('✅ 3D visualization complete');
+
