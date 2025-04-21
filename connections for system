@@ -1,0 +1,79 @@
+Node 1 Connections
+DHT22 Sensor:
+
+VCC (3.3V) -> 3V3 of ESP32
+GND -> GND of ESP32
+data -> GPIO 4
+
+Capacitive Soil Moisture Sensor:
+
+VCC (3.3V) -> 3V3 of ESP32
+GND -> GND of ESP32
+Analog Output -> GPIO 34
+
+NRF24L01 Module:
+
+VCC (3.3V) -> 3V3 of ESP32
+GND -> GND of ESP32
+CE -> GPIO 22
+CSN -> GPIO 21
+SCK -> GPIO 18
+MOSI -> GPIO 23
+MISO -> GPIO 19
+
+Node 2 Connections
+(Similar to Node 1)
+
+DHT22 Sensor:
+VCC (3.3V) -> 3V3 of ESP32
+GND -> GND of ESP32
+Data -> GPIO 4
+Capacitive Soil Moisture Sensor:
+VCC (3.3V) -> 3V3 of ESP32
+GND -> GND of ESP32
+Analog Output -> GPIO 34
+
+NRF24L01 Module:
+VCC (3.3V) -> 3V3 of ESP32
+GND -> GND of ESP32
+CE -> GPIO 22
+CSN -> GPIO 21
+SCK -> GPIO 18
+MOSI -> GPIO 23
+MISO -> GPIO 19
+
+Node 3 Connections (with Motor Relay)
+DHT22 Sensor:
+VCC (3.3V) -> 3V3 of ESP32
+GND -> GND of ESP32
+Data -> GPIO 4
+
+Capacitive Soil Moisture Sensor:
+VCC (3.3V) -> 3V3 of ESP32
+GND -> GND of ESP32
+Analog Output -> GPIO 34
+Relay Module for Motor:
+VCC (5V or 3.3V, depending on relay) -> 5V or 3V3 of ESP32
+GND -> GND of ESP32
+IN (Signal Input) -> GPIO 25
+
+NRF24L01 Module:
+VCC (3.3V) -> 3V3 of ESP32
+GND -> GND of ESP32
+CE -> GPIO 22
+CSN -> GPIO 21
+SCK -> GPIO 18
+MOSI -> GPIO 23
+MISO -> GPIO 19
+
+Base Station (Receiver) Connections
+NRF24L01 Module:
+VCC (3.3V) -> 3V3 of ESP32
+GND -> GND of ESP32
+CE -> GPIO 22
+CSN -> GPIO 21
+SCK -> GPIO 18
+MOSI -> GPIO 23
+MISO -> GPIO 19
+
+Wi-Fi: No additional hardware connection is needed as ESP32 includes integrated Wi-Fi.
